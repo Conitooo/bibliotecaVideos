@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane style="-fx-background-color: #9ba2e9;" 
+            xmlns="http://javafx.com/javafx/21.0.6" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="hellofx.Controller"
+            stylesheets="@style.css">
+   <center>
+      <!-- Contenedor central: se muestra el título y un StackPane que contiene el MediaView y el ImageView -->
+      <VBox fx:id="centerVBox" alignment="TOP_CENTER" minHeight="0.0" minWidth="0.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <Text fx:id="videoTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Titulo" textAlignment="CENTER" wrappingWidth="599.13" />
+            <!-- StackPane para superponer el MediaView y la imagen para audio -->
+            <StackPane fx:id="mediaStack" VBox.vgrow="ALWAYS">
+               <children>
+                  <MediaView fx:id="mediaView" smooth="false" />
+                  <ImageView fx:id="audioImageView" visible="false" />
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox spacing="20.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <!-- Slider para la posición de reproducción -->
+            <Slider fx:id="slider" onMouseDragged="#sliderPressed" onMousePressed="#sliderPressed" prefHeight="0.0" prefWidth="800.0" style="-fx-background-color: #d7e0ed;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Slider>
+            <!-- Controles de reproducción -->
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pauseMedia" style="-fx-background-color: #d7e0ed;" text="PAUSE" textAlignment="CENTER" />
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#playMedia" style="-fx-background-color: #d7e0ed;" text="PLAY" />
+                  <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetMedia" style="-fx-background-color: #d7e0ed;" text="RESET" />
+                  <Slider fx:id="volumeSlider" cache="true" max="150.0" maxWidth="100.0" nodeOrientation="LEFT_TO_RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Slider>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Volumen" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="Archivo">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Biblioteca">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ver">
+               <items>
+                  <CheckMenuItem fx:id="toggleLeft" text="Mostrar controles" selected="true" onAction="#toggleLeftSidebar"/>
+                  <CheckMenuItem fx:id="toggleRight" text="Mostrar lista" selected="true" onAction="#toggleRightSidebar"/>
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Acerca">
+               <items>
+                  <MenuItem fx:id="about" mnemonicParsing="false" onAction="#about" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox fx:id="leftSidebar" prefHeight="338.0" prefWidth="82.0" style="-fx-background-color: #d7e0ed; -fx-border-radius: 30px;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="32.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidad" textAlignment="CENTER" wrappingWidth="100.0" />
+                  <Slider fx:id="speedSlider" blockIncrement="0.1" max="2.0" onMouseDragged="#changeSpeed" onMouseReleased="#changeSpeed" value="1.0" />
+                  <Button fx:id="defaultV" mnemonicParsing="false" onMouseClicked="#defaultV" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #fffbf3;" text="x1.0" textAlignment="CENTER" />
+               </children>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="32.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tamaño" textAlignment="CENTER" wrappingWidth="100.0" />
+                  <Button fx:id="btnLarge" mnemonicParsing="false" onMouseClicked="#setMediaViewLarge" style="-fx-background-color: #fffbf3;" text="Grande" />
+                  <Button fx:id="btnSmall" mnemonicParsing="false" onMouseClicked="#setMediaViewSmall" style="-fx-background-color: #fffbf3;" text="Pequeño" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <right>
+      <ListView fx:id="videoList" prefHeight="200.0" prefWidth="164.0" style="-fx-background-color: #d7e0ed;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </ListView>
+   </right>
+</BorderPane>

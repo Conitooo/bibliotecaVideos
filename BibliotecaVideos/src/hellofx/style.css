@@ -1,0 +1,86 @@
+/* Estilo global para la aplicación */
+.root {
+    -fx-background-color: #1e1e1e; /* Fondo oscuro */
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #ffffff;
+}
+
+/* Barra de menús */
+.menu-bar {
+    -fx-background-color: #2b2b2b;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10 5 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 1);
+}
+
+.menu, .menu-item, .check-menu-item {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+}
+
+/* Contenedor central (área donde se muestra el video o la imagen) */
+#centerVBox {
+    -fx-background-color: #252526;
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+}
+
+/* Título (video, audio, etc.) */
+#videoTitle {
+    -fx-font-size: 20px;
+    -fx-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* Botones */
+.button {
+    -fx-background-color: linear-gradient(#3c3c3c, #5a5a5a);
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 8 15 8 15;
+    -fx-cursor: hand;
+    -fx-border-color: #555555;
+    -fx-border-width: 1;
+}
+
+
+.button:hover {
+    -fx-background-color: linear-gradient(#5a5a5a, #3c3c3c);
+
+}
+
+/* Slider */
+.slider {
+    -fx-control-inner-background: #3c3c3c;
+}
+
+/* ListView (biblioteca) */
+.list-view {
+    -fx-background-color: #252526;
+    -fx-border-color: #3c3c3c;
+    
+
+}
+
+.list-cell .label {
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+}
+
+/* Barra lateral izquierda (controles) */
+#leftSidebar {
+    -fx-background-color: #2d2d30;
+    -fx-padding: 10;
+    -fx-border-color: #3c3c3c;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+
+.check-menu-item {
+    -fx-text-fill: #e0e0e0;
+}
